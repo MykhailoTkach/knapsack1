@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <title>Рюкзак – Варіант 28 </title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>Задача "Рюкзак" – Варіант 28</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Задача "Рюкзак" – Варіант 28 </h1>
+  <h1>Задача "Рюкзак" – Варіант 28</h1>
 
   <div id="dp-table-container"></div>
-  <div id="explanation" style="margin-top: 20px; font-style: italic; color: #2c3e50;"></div>
+  <div id="explanation"></div>
   <div id="result"></div>
 
-  <button onclick="initKnapsack()">Почати з нуля</button>
-  <button onclick="nextRow()">Наступний рядок</button>
+  <div style="text-align: center;">
+    <button onclick="initKnapsack()">Почати з нуля</button>
+    <button onclick="nextRow()">Наступний рядок</button>
+    <button onclick="nextStep()">Наступний крок (1 клітинка)</button>
+    <button onclick="autoPlay()">▶️ Авто</button>
+    <button onclick="stopPlay()">⏸️ Стоп</button>
+  </div>
 
   <script src="script.js"></script>
 </body>
-
 </html>

@@ -53,6 +53,10 @@ td:hover {
   font-weight: bold;
 }
 
+.source {
+  background-color: #005f99 !important;
+}
+
 #dp-table-container {
   overflow-x: auto;
   max-width: 100%;
