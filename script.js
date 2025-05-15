@@ -9,7 +9,7 @@ let i = 1, w = 0;
 let interval = null;
 
 function initKnapsack() {
-  stopPlay(); 
+  stopPlay();
 
   dp = Array.from({ length: n + 1 }, () => Array(maxWeight + 1).fill(0));
   currentRow = 1;
@@ -18,27 +18,39 @@ function initKnapsack() {
 
   document.getElementById('result').innerText = '';
   document.getElementById('explanation').innerText = '';
-  renderEmptyTable();
+  renderEmptyGrid();
 }
 
+function renderEmptyGrid() {
+  const container = document.createElement('div');
+  container.className = 'dp-grid';
+  container.style.gridTemplateColumns = `repeat(${maxWeight + 2}, auto)`;
 
-function renderEmptyTable() {
-  const table = document.createElement('table');
-  const header = document.createElement('tr');
-  header.innerHTML = `<th>i \\ w</th>` +
-    Array.from({ length: maxWeight + 1 }, (_, i) => `<th>${i}</th>`).join('');
-  table.appendChild(header);
+  container.appendChild(createCell('i \\ w', 'header'));
 
-  for (let i = 0; i <= n; i++) {
-    const row = document.createElement('tr');
-    row.innerHTML = `<th>${i}</th>` +
-      Array.from({ length: maxWeight + 1 }, (_, w) =>
-        `<td id="cell-${i}-${w}">0</td>`).join('');
-    table.appendChild(row);
+  for (let w = 0; w <= maxWeight; w++) {
+    container.appendChild(createCell(w, 'header'));
   }
 
-  document.getElementById('dp-table-container').innerHTML = '';
-  document.getElementById('dp-table-container').appendChild(table);
+  for (let i = 0; i <= n; i++) {
+    container.appendChild(createCell(i, 'header'));
+    for (let w = 0; w <= maxWeight; w++) {
+      const cell = createCell('0', 'cell');
+      cell.id = `cell-${i}-${w}`;
+      container.appendChild(cell);
+    }
+  }
+
+  const tableContainer = document.getElementById('dp-table-container');
+  tableContainer.innerHTML = '';
+  tableContainer.appendChild(container);
+}
+
+function createCell(content, type) {
+  const div = document.createElement('div');
+  div.textContent = content;
+  div.className = type;
+  return div;
 }
 
 function nextRow() {
